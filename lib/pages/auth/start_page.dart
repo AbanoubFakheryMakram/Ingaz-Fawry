@@ -13,81 +13,79 @@ class StartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/logo.png',
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Image.asset(
+            'assets/images/logo.png',
+          ),
+          SizedBox(
+            height: ScreenUtil().setHeight(30),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil().setWidth(30),
             ),
-            SizedBox(
-              height: ScreenUtil().setHeight(30),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: ScreenUtil().setHeight(21),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: ClipPath(
-                      clipper: MyClipper(),
-                      child: GestureDetector(
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => LoginOrRegisterPage(type: 'office'),
-                          ),
-                        ),
-                        child: Container(
-                          height: ScreenUtil().setHeight(105),
-                          color: greenColor,
-                          child: Center(
-                            child: cardChild(
-                              icon: FontAwesomeIcons.building,
-                              text: 'معقب/مكتب خدمات',
-                            ),
-                          ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  child: ClipPath(
+                    clipper: MyClipper(),
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => LoginOrRegisterPage(type: 'office'),
                         ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: ScreenUtil().setWidth(12),
-                  ),
-                  Expanded(
-                    child: ClipPath(
-                      clipper: MyClipper(),
-                      child: GestureDetector(
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => LoginOrRegisterPage(type: 'user'),
-                          ),
-                        ),
-                        child: Container(
-                          height: ScreenUtil().setHeight(105),
-                          color: purpleColor,
+                      child: Container(
+                        height: ScreenUtil().setHeight(70),
+                        color: greenColor,
+                        child: Center(
                           child: cardChild(
-                            text: 'مستخدم',
-                            icon: Icons.person,
+                            icon: FontAwesomeIcons.building,
+                            text: 'معقب/مكتب خدمات',
                           ),
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  width: ScreenUtil().setWidth(10),
+                ),
+                Expanded(
+                  child: ClipPath(
+                    clipper: MyClipper(),
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => LoginOrRegisterPage(type: 'user'),
+                        ),
+                      ),
+                      child: Container(
+                        height: ScreenUtil().setHeight(70),
+                        color: purpleColor,
+                        child: cardChild(
+                          text: 'مستخدم',
+                          icon: Icons.person,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: ScreenUtil().setHeight(20),
-            ),
-            pageDownDecoration(
-              firstDecorHeight: ScreenUtil().setHeight(160),
-              sceondDecoreHeight: ScreenUtil().setHeight(90),
-            ),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: ScreenUtil().setHeight(15),
+          ),
+          pageDownDecoration(
+            firstDecorHeight: ScreenUtil().setHeight(80),
+            sceondDecoreHeight: ScreenUtil().setHeight(40),
+          ),
+        ],
       ),
     );
   }

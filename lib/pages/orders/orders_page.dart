@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ingaz_fawry/pages/home/home_page.dart';
-import 'package:ingaz_fawry/pages/home/home_widget.dart';
 import 'package:ingaz_fawry/pages/notifications/notification_page.dart';
 import 'package:ingaz_fawry/utils/const.dart';
 import 'package:ingaz_fawry/widgets/widgets.dart';
@@ -45,7 +42,9 @@ class _OrdersPageState extends State<OrdersPage> {
               Tab(
                 child: Container(
                   margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.symmetric(horizontal: 7),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: ScreenUtil().setWidth(7),
+                  ),
                   decoration: BoxDecoration(
                     color: Color(0xff562485),
                     border: Border.all(
@@ -56,6 +55,7 @@ class _OrdersPageState extends State<OrdersPage> {
                   child: Center(
                     child: Text(
                       'الطلبات الملغاه',
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -63,7 +63,9 @@ class _OrdersPageState extends State<OrdersPage> {
               Tab(
                 child: Container(
                   margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.symmetric(horizontal: 7),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: ScreenUtil().setWidth(7),
+                  ),
                   decoration: BoxDecoration(
                     color: Color(0xff562485),
                     border: Border.all(
@@ -73,7 +75,8 @@ class _OrdersPageState extends State<OrdersPage> {
                   ),
                   child: Center(
                     child: Text(
-                      'الطلبات المغتوحه',
+                      'الطلبات المفتوحه',
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -81,7 +84,9 @@ class _OrdersPageState extends State<OrdersPage> {
               Tab(
                 child: Container(
                   margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.symmetric(horizontal: 7),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: ScreenUtil().setWidth(7),
+                  ),
                   decoration: BoxDecoration(
                     color: Color(0xff562485),
                     border: Border.all(
@@ -92,6 +97,7 @@ class _OrdersPageState extends State<OrdersPage> {
                   child: Center(
                     child: Text(
                       'الطلبات المنتهية',
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -111,14 +117,20 @@ class _OrdersPageState extends State<OrdersPage> {
             size: 36,
           ),
         ),
-        bottomNavigationBar: bottomBar(),
+        bottomNavigationBar: bottomBar(
+          isContact: false,
+          isFollowers: false,
+          isHome: false,
+          isOrders: true,
+          context: context,
+        ),
         body: TabBarView(
           children: [
             Container(
-              color: greenColor,
+              color: Colors.amber,
             ),
             Container(
-              color: purpleColor,
+              color: Colors.red,
             ),
             ListView(
               children: <Widget>[
@@ -129,47 +141,6 @@ class _OrdersPageState extends State<OrdersPage> {
                 orderItem(context),
                 orderItem(context),
               ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget bottomBar({int index}) {
-    return BottomAppBar(
-      elevation: 0,
-      color: purpleColor,
-      child: Container(
-        height: 60,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            bottomBarIcon(
-              icon: FontAwesomeIcons.solidQuestionCircle,
-              isSelected: false,
-            ),
-            bottomBarIcon(
-              icon: Icons.business_center,
-              isSelected: false,
-            ),
-            SizedBox(
-              width: ScreenUtil().setWidth(70),
-            ),
-            bottomBarIcon(
-              icon: Icons.storage,
-              isSelected: true,
-            ),
-            bottomBarIcon(
-              icon: Icons.home,
-              isSelected: false,
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => HomePage(),
-                  ),
-                );
-              },
             ),
           ],
         ),

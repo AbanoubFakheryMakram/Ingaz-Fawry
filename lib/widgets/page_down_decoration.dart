@@ -5,6 +5,8 @@ import 'package:ingaz_fawry/utils/clippers_paintes/decore.dart';
 Widget pageDownDecoration({
   double firstDecorHeight,
   double sceondDecoreHeight,
+  double firstWidth,
+  double secondWidth,
 }) {
   return Align(
     child: Stack(
@@ -13,14 +15,14 @@ Widget pageDownDecoration({
         CustomPaint(
           painter: DownDecore1(),
           child: Container(
-            width: double.infinity,
+            width: firstWidth ?? double.infinity,
             height: firstDecorHeight ?? ScreenUtil().setHeight(130),
           ),
         ),
         CustomPaint(
           painter: DownDecore2(),
           child: Container(
-            width: double.infinity,
+            width: secondWidth ?? double.infinity,
             height: sceondDecoreHeight ?? ScreenUtil().setHeight(65),
           ),
         ),

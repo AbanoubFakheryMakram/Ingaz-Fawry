@@ -59,7 +59,7 @@ Widget buildRowService(
           ),
         ),
         SizedBox(
-          width: ScreenUtil().setWidth(30),
+          width: ScreenUtil().setWidth(20),
         ),
         Container(
           width: ScreenUtil().setWidth(90),
@@ -136,7 +136,7 @@ Widget centerPart() {
                   ),
                 ),
                 SizedBox(
-                  height: ScreenUtil().setWidth(30),
+                  height: ScreenUtil().setWidth(20),
                 ),
                 Expanded(
                   child: buildRowService(

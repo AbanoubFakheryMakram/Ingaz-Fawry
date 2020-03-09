@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ingaz_fawry/my_test_file.dart';
-import 'package:ingaz_fawry/pages/accreditation/accreditation.dart';
-import 'package:ingaz_fawry/pages/ask_question/ask_question.dart';
-import 'package:ingaz_fawry/pages/companies/companies.dart';
-import 'package:ingaz_fawry/pages/followers/followers_page.dart';
-import 'package:ingaz_fawry/pages/questions/questions.dart';
-import 'package:ingaz_fawry/pages/transactions/transactions.dart';
+import 'package:ingaz_fawry/pages/splash_screen.dart';
+import 'package:ingaz_fawry/test_file.dart';
 import 'package:ingaz_fawry/utils/const.dart';
 
 void main() async {
@@ -49,6 +44,6 @@ class MyApp extends StatelessWidget {
       height: MediaQuery.of(context).size.width,
       allowFontScaling: true,
     );
-    return TestFile();
+    return SplashScreen();
   }
 }

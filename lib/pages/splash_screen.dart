@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_sequence_animation/flutter_sequence_animation.dart';
+import 'package:ingaz_fawry/utils/clippers_paintes/center_part.dart';
 import 'package:ingaz_fawry/utils/clippers_paintes/my_clipper.dart';
 import 'package:ingaz_fawry/utils/const.dart';
 
@@ -42,13 +43,13 @@ class _SplashScreenState extends State<SplashScreen>
           tag: "top",
         )
         .addAnimatable(
-          animatable: new Tween<double>(begin: -420, end: -180),
+          animatable: new Tween<double>(begin: -450, end: -180),
           from: Duration(seconds: 0),
           to: Duration(seconds: 1),
           tag: "center",
         )
         .addAnimatable(
-          animatable: new Tween<double>(begin: -195, end: -75),
+          animatable: new Tween<double>(begin: -175, end: -75),
           from: Duration(seconds: 0),
           to: Duration(seconds: 1),
           tag: "bottom",
@@ -56,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen>
         .addAnimatable(
           animatable: new Tween<double>(begin: 0, end: 1),
           from: Duration(seconds: 0),
-          to: Duration(milliseconds: 2000),
+          to: Duration(milliseconds: 2150),
           tag: "opacity",
         )
         .addAnimatable(
@@ -95,11 +96,13 @@ class _SplashScreenState extends State<SplashScreen>
     _animationController.forward();
 
     Future.delayed(Duration(seconds: 5)).then(
-      (value) => Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => StartPage(),
-        ),
-      ),
+      (value) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (_) => StartPage(),
+          ),
+        );
+      },
     );
   }
 
@@ -108,30 +111,31 @@ class _SplashScreenState extends State<SplashScreen>
     return SafeArea(
       child: Scaffold(
         backgroundColor: sequenceAnimation['background'].value,
-        body: Stack(
-          fit: StackFit.expand,
-          alignment: Alignment.center,
-          children: <Widget>[
-            // top container
-            _topContainer(),
-            // bottom container
-            _bottomContainer(),
-            // center container
-            _centerContainer(),
-            // display text || image
-            sequenceAnimation['logo'].value == 1
-                ? _centerImage()
-                : sequenceAnimation['opacity'].value == .7
-                    ? SizedBox.shrink()
-                    : Opacity(
-                        opacity: sequenceAnimation['opacity'].value,
-                        child: Image.asset(
-                          'assets/images/e_outline.png',
-                          width: ScreenUtil().setWidth(120),
-                          height: ScreenUtil().setHeight(120),
-                        ),
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              // top container
+              _topContainer(),
+              // bottom container
+              _bottomContainer(),
+              // center container
+              _centerContainer(),
+              // display text || image
+              sequenceAnimation['opacity'].value == 1
+                  ? _centerImage()
+                  : Opacity(
+                      opacity: sequenceAnimation['opacity'].value,
+                      child: Image.asset(
+                        'assets/images/e_outline.png',
+                        width: ScreenUtil().setWidth(120),
+                        height: ScreenUtil().setHeight(120),
                       ),
-          ],
+                    ),
+            ],
+          ),
         ),
       ),
     );
@@ -144,15 +148,13 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Widget _bottomContainer() {
-    // the start of this container is -135 from right
-    // the end of this container is -75 then 95 from right
     return Positioned(
       right: sequenceAnimation['bottom'].value,
       bottom: 0,
       child: ClipPath(
         clipper: MyClipper(),
         child: Container(
-          height: ScreenUtil().setHeight(60),
+          height: ScreenUtil().setHeight(30),
           width: ScreenUtil().setWidth(345),
           color: purpleColor,
         ),
@@ -161,15 +163,13 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Widget _topContainer() {
-    // the start of this container is -200 from right
-    // the end of this container is -80 from right
     return Positioned(
       right: sequenceAnimation['top'].value,
       top: 0,
       child: ClipPath(
         clipper: MyClipper(),
         child: Container(
-          height: ScreenUtil().setHeight(60),
+          height: ScreenUtil().setHeight(30),
           width: ScreenUtil().setWidth(330),
           color: purpleColor,
         ),
@@ -178,13 +178,11 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Widget _centerContainer() {
-    // the start of this container is -420 from left
-    // the end of this container is -180 from left
     return Positioned(
       left: sequenceAnimation['center'].value,
-      height: ScreenUtil().setHeight(260),
+      height: ScreenUtil().setHeight(180),
       child: ClipPath(
-        clipper: MyClipper(),
+        clipper: CenterPart(),
         child: Container(
           width: ScreenUtil.screenWidth,
           color: purpleColor,

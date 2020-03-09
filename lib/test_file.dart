@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ingaz_fawry/utils/clippers_paintes/my_clipper.dart';
@@ -12,29 +11,33 @@ class TestFile extends StatefulWidget {
 class _TestFileState extends State<TestFile> {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-      context,
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      allowFontScaling: true,
-    );
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            
+            children: <Widget>[
+              // top container
+              _topContainer(),
+              // bottom container
+              _bottomContainer(),
+              // center container
+              _centerContainer(),
+              // display text || image
 
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      body: Stack(
-        fit: StackFit.expand,
-        alignment: Alignment.center,
-        children: <Widget>[
-          // top container
-          _topContainer(),
-          // bottom container
-          _bottomContainer(),
-          // center container
-          _centerContainer(),
-          // display text || image
-          _centerImage()
-              
-        ],
+              Center(
+                child: Image.asset(
+                  'assets/images/e_outline.png',
+                  width: ScreenUtil().setWidth(140),
+                  height: ScreenUtil().setHeight(140),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -49,12 +52,12 @@ class _TestFileState extends State<TestFile> {
     // the start of this container is -135 from right
     // the end of this container is -75 then 95 from right
     return Positioned(
-      right: -135,
+      right: -175,
       bottom: 0,
       child: ClipPath(
         clipper: MyClipper(),
         child: Container(
-          height: ScreenUtil().setHeight(60),
+          height: ScreenUtil().setHeight(30),
           width: ScreenUtil().setWidth(345),
           color: purpleColor,
         ),
@@ -71,7 +74,7 @@ class _TestFileState extends State<TestFile> {
       child: ClipPath(
         clipper: MyClipper(),
         child: Container(
-          height: ScreenUtil().setHeight(60),
+          height: ScreenUtil().setHeight(30),
           width: ScreenUtil().setWidth(330),
           color: purpleColor,
         ),
@@ -83,11 +86,13 @@ class _TestFileState extends State<TestFile> {
     // the start of this container is -420 from left
     // the end of this container is -180 from left
     return Positioned(
-      left: -420,
-      height: ScreenUtil().setHeight(260),
+      left: -450,
+      top: ScreenUtil.screenWidth / 5,
+      
       child: ClipPath(
         clipper: MyClipper(),
         child: Container(
+          height: ScreenUtil().setHeight(180),
           width: ScreenUtil.screenWidth,
           color: purpleColor,
         ),

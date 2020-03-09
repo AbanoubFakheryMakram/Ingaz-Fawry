@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ingaz_fawry/pages/about/about_company.dart';
+import 'package:ingaz_fawry/pages/accreditation/accreditation.dart';
+import 'package:ingaz_fawry/pages/ask_question/ask_question.dart';
 import 'package:ingaz_fawry/pages/auth/login_register_page.dart';
+import 'package:ingaz_fawry/pages/companies/companies.dart';
 import 'package:ingaz_fawry/pages/contatct_us/contact_us.dart';
 import 'package:ingaz_fawry/pages/followers/followers_page.dart';
 import 'package:ingaz_fawry/pages/home/home_page.dart';
@@ -603,6 +606,7 @@ Future<void> showOptionsDialog(BuildContext context) async {
                     text: 'المعاملات',
                     icon: FontAwesomeIcons.solidHandshake,
                     onTap: () {
+                      Navigator.of(context).pop();
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (_) => TransactionsPage(),
@@ -613,14 +617,38 @@ Future<void> showOptionsDialog(BuildContext context) async {
                   dialogOptionItem(
                     text: 'التعميد',
                     icon: FontAwesomeIcons.handHoldingUsd,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => AccreditationPage(),
+                        ),
+                      );
+                    },
                   ),
                   dialogOptionItem(
                     text: 'استفسار',
                     icon: FontAwesomeIcons.commentDollar,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => AskQuestionPage(),
+                        ),
+                      );
+                    },
                   ),
                   dialogOptionItem(
                     text: 'شركات',
                     icon: FontAwesomeIcons.users,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => CompaniesPage(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -661,7 +689,7 @@ Widget dialogOptionItem({
   Color iconColor = Colors.white,
 }) {
   return GestureDetector(
-    onTap: () {},
+    onTap: onTap,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -684,9 +712,16 @@ Future<void> showSubmitDialog(BuildContext context) async {
     barrierLabel: "More Options",
     barrierDismissible: true,
     barrierColor: Colors.black.withOpacity(0.5),
-    transitionDuration: Duration(milliseconds: 700),
+    transitionDuration: Duration(milliseconds: 600),
     context: context,
     pageBuilder: (context, anim1, anim2) {
+      Future.delayed(
+        Duration(milliseconds: 2000),
+      ).then(
+        (value) {
+          Navigator.of(context).pop();
+        },
+      );
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
@@ -706,7 +741,7 @@ Future<void> showSubmitDialog(BuildContext context) async {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Icon(
-                    FontAwesomeIcons.chevronCircleDown,
+                    Icons.check_circle,
                     size: 60,
                     color: Colors.white,
                   ),
